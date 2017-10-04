@@ -57,6 +57,10 @@
     <Compile Include="Migrations\201710021323496_DataModels.Designer.cs">
       <DependentUpon>201710021323496_DataModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710041617256_update.cs" />
+    <Compile Include="Migrations\201710041617256_update.Designer.cs">
+      <DependentUpon>201710041617256_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EfRepository.cs" />
@@ -76,6 +80,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710021323496_DataModels.resx">
       <DependentUpon>201710021323496_DataModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710041617256_update.resx">
+      <DependentUpon>201710041617256_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -23,11 +23,14 @@ namespace SellAndBuy.Data.Models
             // Add custom user claims here
             return userIdentity;
         }
+   
         public string Email { get; set; }
 
         public string Name { get; set; }
 
         public int TelephoneNumber { get; set; }
+
+        public Guid CityId { get; set; }
 
         public virtual City City { get; set; }
 

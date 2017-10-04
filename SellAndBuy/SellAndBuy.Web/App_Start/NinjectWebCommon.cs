@@ -10,6 +10,10 @@ namespace SellAndBuy.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Ninject.Extensions.Conventions;
+    using SellAndBuy.Data.Repositories;
+    using System.Data.Entity;
+    using SellAndBuy.Data;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +65,15 @@ namespace SellAndBuy.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind(x =>
+            {
+                x.FromThisAssembly()
+                 .SelectAllClasses()
+                 .BindDefaultInterface();
+            });
+
+            kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepostory<>));
+            kernel.Bind(typeof(DbContext), typeof(SqlDbContext)).To<SqlDbContext>().InRequestScope();
         }        
     }
 }

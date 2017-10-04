@@ -33,6 +33,12 @@ namespace SellAndBuy.Data.Models
 
         [DataType(DataType.Date)]
         public DateTime CreatedOn { get; set; }
+        [ForeignKey("Category")]
+        public Guid CategoryId { get; set; }
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+        [ForeignKey("City")]
+        public Guid CityId { get; set; }
 
         public virtual Category Category { get; set; }
 

@@ -29,8 +29,7 @@ namespace SellAndBuy.Data.Models
         public string Name { get; set; }
 
         public int TelephoneNumber { get; set; }
-
-        public Guid CityId { get; set; }
+        public int? CityId { get; set; }
 
         public virtual City City { get; set; }
 

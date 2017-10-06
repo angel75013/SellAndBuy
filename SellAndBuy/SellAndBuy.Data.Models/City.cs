@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LinqToExcel;
+using LinqToExcel.Attributes;
 
 namespace SellAndBuy.Data.Models
 {
@@ -11,18 +14,18 @@ namespace SellAndBuy.Data.Models
     {
         public City()
         {
-            this.Id = Guid.NewGuid();
             this.Adds = new HashSet<Add>();
-            this.Categories = new HashSet<Category>();
         }
 
-        [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
+        public int ProvinceId { get; set; }
+
+        public virtual Province Province { get; set; }
+
         public virtual ICollection<Add> Adds { get; set; }
 
-        public virtual ICollection<Category> Categories { get; set; }
     }
 }

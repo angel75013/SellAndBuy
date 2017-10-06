@@ -1,0 +1,258 @@
+Sr.No,Name,ProvinceName
+1,Sofia,Sofia City
+2,Plovdiv,Plovdiv Province
+3,Varna,Varna Province
+4,Burgas,Burgas Province
+5,Ruse,Rousse Province
+6,Stara Zagora,Stara Zagora Province
+7,Pleven,Pleven Province
+8,Sliven,Sliven Province
+9,Dobrich,Dobrich Province
+10,Pernik,Pernik Province
+11,Shumen,Shumen Province
+12,Haskovo,Haskovo Province
+13,Yambol,Yambol Province
+14,Pazardzhik,Pazardzhik Province
+15,Blagoevgrad,Blagoevgrad Province
+16,Veliko Tarnovo,Veliko Tarnovo Province
+17,Vratsa,Vratsa Province
+18,Gabrovo,Gabrovo Province
+19,Asenovgrad,Plovdiv Province
+20,Vidin,Vidin Province
+21,Kazanlak,Stara Zagora Province
+22,Kyustendil,Kyustendil Province
+23,Kardzhali,Kardzhali Province
+24,Montana,Montana Province
+25,Dimitrovgrad,Haskovo Province
+26,Targovishte,Targovishte Province
+27,Lovech,Lovech Province
+28,Silistra,Silistra Province
+29,Dupnitsa,Kyustendil Province
+30,Svishtov,Veliko Tarnovo Province
+31,Razgrad,Razgrad Province
+32,Gorna Oryahovitsa,Veliko Tarnovo Province
+33,Smolyan,Smolyan Province
+34,Petrich,Blagoevgrad Province
+35,Sandanski,Blagoevgrad Province
+36,Samokov,Sofia Province
+37,Sevlievo,Gabrovo Province
+38,Lom,Montana Province
+39,Karlovo,Plovdiv Province
+40,Velingrad,Pazardzhik Province
+41,Nova Zagora,Sliven Province
+42,Troyan,Lovech Province
+43,Aytos,Burgas Province
+44,Botevgrad,Sofia Province
+45,Gotse Delchev,Blagoevgrad Province
+46,Peshtera,Pazardzhik Province
+47,Harmanli,Haskovo Province
+48,Karnobat,Burgas Province
+49,Svilengrad,Haskovo Province
+50,Panagyurishte,Pazardzhik Province
+51,Chirpan,Stara Zagora Province
+52,Popovo,Targovishte Province
+53,Rakovski,Plovdiv Province
+54,Radomir,Pernik Province
+55,Novi Iskar,Sofia City
+56,Kozloduy,Vratsa Province
+57,Parvomay,Plovdiv Province
+58,Berkovitsa,Montana Province
+59,Cherven Bryag,Pleven Province
+60,Pomorie,Burgas Province
+61,Ihtiman,Sofia Province
+62,Radnevo,Stara Zagora Province
+63,Provadiya,Varna Province
+64,Novi Pazar,Shumen Province
+65,Razlog,Blagoevgrad Province
+66,Byala Slatina,Vratsa Province
+67,Nesebar,Burgas Province
+68,Balchik,Dobrich Province
+69,Kostinbrod,Sofia Province
+70,Stamboliyski,Plovdiv Province
+71,Kavarna,Dobrich Province
+72,Knezha,Pleven Province
+73,Pavlikeni,Veliko Tarnovo Province
+74,Mezdra,Vratsa Province
+75,Etropole,Sofia Province
+76,Levski,Pleven Province
+77,Teteven,Lovech Province
+78,Elhovo,Yambol Province
+79,Bankya,Sofia City
+80,Tryavna,Gabrovo Province
+81,Lukovit,Lovech Province
+82,Tutrakan,Silistra Province
+83,Sredets,Burgas Province
+84,Sopot,Plovdiv Province
+85,Byala,Rousse Province
+86,Veliki Preslav,Shumen Province
+87,Isperih,Razgrad Province
+88,Belene,Pleven Province
+89,Omurtag,Targovishte Province
+90,Bansko,Blagoevgrad Province
+91,Krichim,Plovdiv Province
+92,Galabovo,Stara Zagora Province
+93,Devnya,Varna Province
+94,Septemvri,Pazardzhik Province
+95,Rakitovo,Pazardzhik Province
+96,Lyaskovets,Veliko Tarnovo Province
+97,Svoge,Sofia Province
+98,Aksakovo,Varna Province
+99,Kubrat,Razgrad Province
+100,Dryanovo,Gabrovo Province
+101,Beloslav,Varna Province
+102,Pirdop,Sofia Province
+103,Lyubimets,Haskovo Province
+104,Momchilgrad,Kardzhali Province
+105,Slivnitsa,Sofia Province
+106,Hisarya,Plovdiv Province
+107,Zlatograd,Smolyan Province
+108,Kostenets,Sofia Province
+109,Devin,Smolyan Province
+110,General Toshevo,Dobrich Province
+111,Simeonovgrad,Haskovo Province
+112,Simitli,Blagoevgrad Province
+113,Elin Pelin,Sofia Province
+114,Dolni Chiflik,Varna Province
+115,Tervel,Dobrich Province
+116,Dulovo,Silistra Province
+117,Varshets,Montana Province
+118,Kotel,Sliven Province
+119,Madan,Smolyan Province
+120,Straldzha,Yambol Province
+121,Saedinenie,Plovdiv Province
+122,Bobov Dol,Kyustendil Province
+123,Tsarevo,Burgas Province
+124,Kuklen,Plovdiv Province
+125,Tvarditsa,Sliven Province
+126,Yakoruda,Blagoevgrad Province
+127,Elena,Veliko Tarnovo Province
+128,Topolovgrad,Haskovo Province
+129,Bozhurishte,Sofia Province
+130,Chepelare,Smolyan Province
+131,Oryahovo,Vratsa Province
+132,Sozopol,Burgas Province
+133,Belogradchik,Vidin Province
+134,Perushtitsa,Plovdiv Province
+135,Zlatitsa,Sofia Province
+136,Strazhitsa,Veliko Tarnovo Province
+137,Krumovgrad,Kardzhali Province
+138,Kameno,Burgas Province
+139,Dalgopol,Varna Province
+140,Vetovo,Rousse Province
+141,Suvorovo,Varna Province
+142,Dolni Dabnik,Pleven Province
+143,Dolna Banya,Sofia Province
+144,Pravets,Sofia Province
+145,Nedelino,Smolyan Province
+146,Polski Trambesh,Veliko Tarnovo Province
+147,Trastenik,Pleven Province
+148,Bratsigovo,Pazardzhik Province
+149,Koynare,Pleven Province
+150,Godech,Sofia Province
+151,Slavyanovo,Pleven Province
+152,Dve Mogili,Rousse Province
+153,Kostandovo,Pazardzhik Province
+154,Debelets,Veliko Tarnovo Province
+155,Strelcha,Pazardzhik Province
+156,Sapareva Banya,Kyustendil Province
+157,Ignatievo,Varna Province
+158,Smyadovo,Shumen Province
+159,Breznik,Pernik Province
+160,Sveti Vlas,Burgas Province
+161,Nikopol,Pleven Province
+162,Shivachevo,Sliven Province
+163,Belovo,Pazardzhik Province
+164,Tsar Kaloyan,Razgrad Province
+165,Ivaylovgrad,Haskovo Province
+166,Valchedram,Montana Province
+167,Marten,Rousse Province
+168,Glodzhevo,Rousse Province
+169,Sarnitsa,Pazardzhik Province
+170,Letnitsa,Lovech Province
+171,Varbitsa,Shumen Province
+172,Iskar,Pleven Province
+173,Ardino,Kardzhali Province
+174,Shabla,Dobrich Province
+175,Rudozem,Smolyan Province
+176,Vetren,Pazardzhik Province
+177,Kresna,Blagoevgrad Province
+178,Banya,Plovdiv Province
+179,Batak,Pazardzhik Province
+180,Maglizh,Stara Zagora Province
+181,Valchi Dol,Varna Province
+182,Gulyantsi,Pleven Province
+183,Dragoman,Sofia Province
+184,Zavet,Razgrad Province
+185,Kran,Stara Zagora Province
+186,Miziya,Vratsa Province
+187,Primorsko,Burgas Province
+188,Sungurlare,Burgas Province
+189,Dolna Mitropoliya,Pleven Province
+190,Krivodol,Vratsa Province
+191,Kula,Vidin Province
+192,Kalofer,Plovdiv Province
+193,Slivo Pole,Rousse Province
+194,Kaspichan,Shumen Province
+195,Apriltsi,Lovech Province
+196,Belitsa,Blagoevgrad Province
+197,Roman,Vratsa Province
+198,Dzhebel,Kardzhali Province
+199,Dolna Oryahovitsa,Veliko Tarnovo Province
+200,Buhovo,Sofia City
+201,Gurkovo,Stara Zagora Province
+202,Pavel Banya,Stara Zagora Province
+203,Nikolaevo,Stara Zagora Province
+204,Yablanitsa,Lovech Province
+205,Kableshkovo,Burgas Province
+206,Opaka,Targovishte Province
+207,Rila,Kyustendil Province
+208,Ugarchin,Lovech Province
+209,Dunavtsi,Vidin Province
+210,Dobrinishte,Blagoevgrad Province
+211,Hadzhidimovo,Blagoevgrad Province
+212,Bregovo,Vidin Province
+213,Byala Cherkva,Veliko Tarnovo Province
+214,Zlataritsa,Veliko Tarnovo Province
+215,Kocherinovo,Kyustendil Province
+216,Dospat,Smolyan Province
+217,Tran,Pernik Province
+218,Sadovo,Plovdiv Province
+219,Laki,Plovdiv Province
+220,Koprivshtitsa,Sofia Province
+221,Malko Tarnovo,Burgas Province
+222,Loznitsa,Razgrad Province
+223,Obzor,Burgas Province
+224,Kilifarevo,Veliko Tarnovo Province
+225,Borovo,Rousse Province
+226,Batanovtsi,Pernik Province
+227,Chernomorets,Burgas Province
+228,Aheloy,Burgas Province
+229,Byala,Varna Province
+230,Pordim,Pleven Province
+231,Suhindol,Veliko Tarnovo Province
+232,Merichleri,Haskovo Province
+233,Glavinitsa,Silistra Province
+234,Chiprovtsi,Montana Province
+235,Kermen,Sliven Province
+236,Brezovo,Plovdiv Province
+237,Plachkovtsi,Gabrovo Province
+238,Zemen,Pernik Province
+239,Balgarovo,Burgas Province
+240,Alfatar,Silistra Province
+241,Boychinovtsi,Montana Province
+242,Gramada,Vidin Province
+243,Senovo,Rousse Province
+244,Momin Prohod,Sofia Province
+245,Kaolinovo,Shumen Province
+246,Shipka,Stara Zagora Province
+247,Antonovo,Targovishte Province
+248,Ahtopol,Burgas Province
+249,Boboshevo,Kyustendil Province
+250,Bolyarovo,Yambol Province
+251,Brusartsi,Montana Province
+252,Klisura,Plovdiv Province
+253,Dimovo,Vidin Province
+254,Kiten,Burgas Province
+255,Pliska,Shumen Province
+256,Madzharovo,Haskovo Province
+257,Melnik,Blagoevgrad Province

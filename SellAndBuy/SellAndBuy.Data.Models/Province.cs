@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LinqToExcel;
+using LinqToExcel.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,17 +10,18 @@ using System.Threading.Tasks;
 
 namespace SellAndBuy.Data.Models
 {
-    public class Category
+    public class Province
     {
-        public Category()
-        {
-            this.Adds = new HashSet<Add>();
-           
+        public Province()
+        {  
+            this.Cities = new HashSet<City>();
         }
+
         public int Id { get; set; }
        
-        public CategoriesEnum CategorieName { get; set; }
+        public string ProvinceName { get; set; }       
+           
        
-        public virtual ICollection<Add> Adds { get; set; }
+        public virtual ICollection<City> Cities { get; set; }
     }
 }

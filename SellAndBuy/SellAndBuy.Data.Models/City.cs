@@ -12,9 +12,10 @@ namespace SellAndBuy.Data.Models
 {
     public class City
     {
+        private ICollection<Add> adds;
         public City()
         {
-            this.Adds = new HashSet<Add>();
+            this.adds = new HashSet<Add>();
         }
 
         public int Id { get; set; }
@@ -25,7 +26,10 @@ namespace SellAndBuy.Data.Models
 
         public virtual Province Province { get; set; }
 
-        public virtual ICollection<Add> Adds { get; set; }
-
+        public virtual ICollection<Add> Adds
+        {
+            get { return this.adds; }
+            set { this.adds = value; }
+        }
     }
 }

@@ -10,15 +10,20 @@ namespace SellAndBuy.Data.Models
 {
     public class Category
     {
+        private ICollection<Add> adds;
         public Category()
         {
-            this.Adds = new HashSet<Add>();
+            this.adds = new HashSet<Add>();
            
         }
         public int Id { get; set; }
        
         public CategoriesEnum CategorieName { get; set; }
        
-        public virtual ICollection<Add> Adds { get; set; }
+        public virtual ICollection<Add> Adds
+        {
+            get { return this.adds; }
+            set { this.adds = value;}
+        }
     }
 }

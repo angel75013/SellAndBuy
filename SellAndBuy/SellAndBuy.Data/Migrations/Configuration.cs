@@ -1,19 +1,19 @@
-
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using SellAndBuy.Data.Models;
-using System;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.IO;
-using System.Reflection;
 using Newtonsoft.Json.Linq;
+using SellAndBuy.Data.Models;
+using System.Data.Entity.Migrations;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace SellAndBuy.Data.Migrations
 {
     public sealed class Configuration : DbMigrationsConfiguration<SqlDbContext>
     {
+        const string ProvinceFileJson = "SellAndBuy.Data.Ressources.provinces-bg.json";
+        const string CitiesFileJson = "SellAndBuy.Data.Ressources.province-cities-bg.json";
+
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
@@ -49,29 +49,27 @@ namespace SellAndBuy.Data.Migrations
                 userManager.AddToRole(user.Id, "Admin");
             }
         }
+
         private void SeedProvinces(SqlDbContext context)
         {
-            var provincesJsonAll =
-           GetEmbeddedResourceAsString("SellAndBuy.Data.Ressources.provinces-bg.json");
+            var provincesJsonAll = GetEmbeddedResourceAsString(ProvinceFileJson);
 
             JArray jsonprovincesJsonAll = JArray.Parse(provincesJsonAll) as JArray;
-            
+
             foreach (var province in jsonprovincesJsonAll)
             {
                 context.Provinces.Add(new Province
                 {
-                    ProvinceName=(string)province
+                    ProvinceName = (string)province
                 });
 
             }
             context.SaveChanges();
-
-
         }
+
         private void SeedCities(SqlDbContext context)
         {
-            var citiesJsonAll =
-           GetEmbeddedResourceAsString("SellAndBuy.Data.Ressources.province-cities-bg.json");
+            var citiesJsonAll = GetEmbeddedResourceAsString(CitiesFileJson);
 
             JArray jsonCitiesJsonAll = JArray.Parse(citiesJsonAll) as JArray;
 
@@ -101,12 +99,11 @@ namespace SellAndBuy.Data.Migrations
                     context.Cities.AddOrUpdate(newCity);
                 }
             }
-
-
         }
+
         private string GetEmbeddedResourceAsString(string resourceName)
         {
-            var assembly = Assembly.GetExecutingAssembly();           
+            var assembly = Assembly.GetExecutingAssembly();
 
             string result;
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))

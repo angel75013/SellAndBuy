@@ -12,16 +12,20 @@ namespace SellAndBuy.Data.Models
 {
     public class Province
     {
+        private ICollection<City> cities;
         public Province()
         {  
-            this.Cities = new HashSet<City>();
+            this.cities = new HashSet<City>();
         }
 
         public int Id { get; set; }
        
-        public string ProvinceName { get; set; }       
-           
-       
-        public virtual ICollection<City> Cities { get; set; }
+        public string ProvinceName { get; set; }
+
+        public virtual ICollection<City> Cities
+        {
+            get { return this.cities; }
+            set { this.cities = value; }
+        }
     }
 }

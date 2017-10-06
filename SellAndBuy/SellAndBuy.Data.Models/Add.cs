@@ -24,7 +24,6 @@ namespace SellAndBuy.Data.Models
 
         public string PhotosPath { get; set; }
 
-
         [Index]
         public bool IsDeleted { get; set; }
 
@@ -34,17 +33,14 @@ namespace SellAndBuy.Data.Models
         [DataType(DataType.Date)]
         public DateTime CreatedOn { get; set; }
 
-
         public int CityId { get; set; }
         public string UserId { get; set; }
-        public int CategoryId { get; set; }
-       
+        public int CategoryId { get; set; }       
 
 
         public virtual Category Category { get; set; }
         public virtual User User { get; set; }
-        public virtual City City { get; set; }
-       
+        public virtual City City { get; set; }       
     }
 }
 

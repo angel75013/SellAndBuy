@@ -49,7 +49,7 @@ namespace SellAndBuy.Web
             manager.UserValidator = new UserValidator<User>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
+                RequireUniqueEmail = false
             };
 
             // Configure validation logic for passwords

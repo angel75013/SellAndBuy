@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{AE6DE181-5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SellAndBuy.Data.Models", "SellAndBuy.Data.Models\SellAndBuy.Data.Models.csproj", "{0D64AB23-1E89-4B73-9007-B755C1BC225A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A196A67C-D578-4EE6-98A0-D224F7507D5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SellAndBuy.Services", "SellAndBuy.Services\SellAndBuy.Services.csproj", "{889AB88A-169F-4613-9496-C9EF44876371}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,10 @@ Global
 		{0D64AB23-1E89-4B73-9007-B755C1BC225A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D64AB23-1E89-4B73-9007-B755C1BC225A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D64AB23-1E89-4B73-9007-B755C1BC225A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{889AB88A-169F-4613-9496-C9EF44876371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{889AB88A-169F-4613-9496-C9EF44876371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{889AB88A-169F-4613-9496-C9EF44876371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{889AB88A-169F-4613-9496-C9EF44876371}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,5 +44,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2EC5BFCA-B001-4FAE-8291-F6CF16487BD8} = {AE6DE181-59F5-45C7-9A71-1084B89D7A88}
 		{0D64AB23-1E89-4B73-9007-B755C1BC225A} = {AE6DE181-59F5-45C7-9A71-1084B89D7A88}
+		{889AB88A-169F-4613-9496-C9EF44876371} = {A196A67C-D578-4EE6-98A0-D224F7507D5F}
 	EndGlobalSection
 EndGlobal

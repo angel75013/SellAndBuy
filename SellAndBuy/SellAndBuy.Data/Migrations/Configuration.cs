@@ -2,6 +2,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Newtonsoft.Json.Linq;
 using SellAndBuy.Data.Models;
+using System;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace SellAndBuy.Data.Migrations
             this.SeedAdmin(context);
             this.SeedProvinces(context);
             this.SeedCities(context);
+            SeedCategories(context);
 
             base.Seed(context);
         }
@@ -112,6 +114,19 @@ namespace SellAndBuy.Data.Migrations
                 result = reader.ReadToEnd();
             }
             return result;
+        }
+        private void SeedCategories(SqlDbContext context)
+        {
+
+            var categories = Enum.GetNames(typeof(CategoriesEnum));
+            foreach (var categorie in categories)           
+            {
+                context.Categories.Add(new Category
+                {
+                    CategorieName = categorie
+                });
+            }
+            context.SaveChanges();
         }
     }
 }

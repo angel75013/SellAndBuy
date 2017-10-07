@@ -15,6 +15,13 @@
 .dl-horizontal dt {
     white-space: normal;
 }
+.jumbotron {
+    background-image: url("./images/buy-swap-sell.jpg");
+    background-size: 100% 150%;
+    background-position: center;
+    height: 400px;
+    width: 100%;
+}
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,

@@ -18,7 +18,7 @@ namespace SellAndBuy.Data.Models
         }
         public int Id { get; set; }
        
-        public CategoriesEnum CategorieName { get; set; }
+        public string CategorieName { get; set; }
        
         public virtual ICollection<Add> Adds
         {

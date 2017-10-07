@@ -8,12 +8,12 @@ namespace SellAndBuy.Data.Models
 {
     public enum CategoriesEnum
     {
-        Automobile=1,
-        HiTech=2,
-        Animals=3,
-        Garden=4,
-        Fashion=5,
-        Sport=6,
-        Outher=7   
+        Automobile,
+        HiTech,
+        Animals,
+        Garden,
+        Fashion,
+        Sport,
+        Outher   
     }
 }

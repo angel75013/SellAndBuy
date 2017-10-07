@@ -14,6 +14,9 @@ namespace SellAndBuy.Web.App_Start
     using SellAndBuy.Data.Repositories;
     using System.Data.Entity;
     using SellAndBuy.Data;
+    using SellAndBuy.Services.Contracts;
+    using SellAndBuy.Data.UnitOfWork;
+    using AutoMapper;
 
     public static class NinjectWebCommon 
     {
@@ -72,8 +75,18 @@ namespace SellAndBuy.Web.App_Start
                  .BindDefaultInterface();
             });
 
-            kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepostory<>));
+            kernel.Bind(x =>
+            {
+                x.FromAssemblyContaining(typeof(IService))//limitirame magic strings, pomisli za bazov klas na servicite 
+                 .SelectAllClasses()
+                 .BindDefaultInterface();
+            });
+
+           
             kernel.Bind(typeof(DbContext), typeof(SqlDbContext)).To<SqlDbContext>().InRequestScope();
+            kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepostory<>));
+            kernel.Bind<IEfUnitOfWork>().To<EfUnitOfWork>();
+            kernel.Bind<IMapper>().To<Mapper>();
         }        
     }
 }

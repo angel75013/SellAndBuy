@@ -44,8 +44,6 @@ namespace SellAndBuy.Web.Controllers
             var allProvinces = this.provinceServices.GetAll().Select(x => x.ProvinceName).ToList();
             var allCities = this.citiesServices.GetAll().Select(x => x.Name).ToList();
 
-            //parvo oblast => da se zaredi list ot gradoveteate 
-            //ili auto complete ot gradovete
 
             var searchModel = new ListViewModel();
             searchModel.Categories = allCategoris;

@@ -1,14 +1,14 @@
 ﻿@using SellAndBuy.Web.Models.Adds
 @model SearchViewModel
 
- @Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jquery")
 @using (@Html.BeginForm())
 {
 
     @Html.EditorFor(m => m.Description)
 
 
-    @Html.DropDownListFor(m => m.Province, new SelectList(Model.Provinces, "Value"), "Всички Области", new { @class = "form-control", @onchange = "FillCity()" } )
+    @Html.DropDownListFor(m => m.Province, new SelectList(Model.Provinces, "Value"), "Всички Области", new { @class = "form-control", @onchange = "FillCity()" })
     @Html.DropDownListFor(m => m.City, new SelectList(Model.Cities, "Value"),
                   "Всички Градове",
                   new { @class = "form-control" })
@@ -21,23 +21,25 @@
 
 <script>
 
-function FillCity() {
-    var id = $('#Province').val();
-    console.log(id);
-    $.ajax({
-        url: '/Add/SelectCities',
-        type: "GET",
-        dataType: "JSON",
-        data: { id: id},
-        success: function (cities) {
-            console.log(cities);
-            $("#City").html(""); // clear before appending new list
-            $.each(cities, function (i, city) {
-                $("#City").append(
-                    $('<option></option>').val(city.Name).html(city.Name));
-            });
-        }
+    function FillCity() {
+        var id = $('#Province').val();
+        console.log(id);
+        $.ajax({
+            url: '/Add/SelectCities',
+            type: "GET",
+            dataType: "JSON",
+            data: { id: id },
+            success: function (cities) {
+                $("#City").html("");
+                if (id == '') {                  
+                    $("#City").append($('<option></option>').val("").html("Всички Градове"));
+                }
+               
+                $.each(cities, function (i, city) {
+                    $("#City").append(
+                        $('<option></option>').val(city.Name).html(city.Name));
+                });
+            }        
     });
   }
 </script>
-

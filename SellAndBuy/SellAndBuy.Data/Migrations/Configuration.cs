@@ -24,9 +24,20 @@ namespace SellAndBuy.Data.Migrations
         protected override void Seed(SqlDbContext context)
         {
             this.SeedAdmin(context);
-            this.SeedProvinces(context);
-            this.SeedCities(context);
-            SeedCategories(context);
+            if (context.Provinces.Count() == 0)
+            {
+                this.SeedProvinces(context);
+            }
+            
+            if (context.Provinces.Count() == 0)
+            {
+                this.SeedCities(context);
+            }
+            
+            if (context.Provinces.Count() == 0)
+            {
+                SeedCategories(context);
+            }            
 
             base.Seed(context);
         }

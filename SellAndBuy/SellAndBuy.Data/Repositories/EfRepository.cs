@@ -15,6 +15,7 @@ namespace SellAndBuy.Data.Repositories
 
         public EfRepostory(SqlDbContext context)
         {
+           
             this.context = context;
         }
 

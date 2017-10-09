@@ -1,0 +1,10 @@
+﻿@using SellAndBuy.Web.Models.Adds
+@model IEnumerable<AddViewModel>
+@{
+    ViewBag.Title = "SearchedAdds";
+}
+
+@foreach (var item in Model)
+{
+   <h3> @item.Description</h3>
+}

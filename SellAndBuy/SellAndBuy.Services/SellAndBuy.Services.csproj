@@ -41,9 +41,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddsServices.cs" />
-    <Compile Include="Contracts\IAddsService.cs" />
+    <Compile Include="CategoriesServices.cs" />
+    <Compile Include="CitiesServices.cs" />
+    <Compile Include="Contracts\IProvincesServices.cs" />
+    <Compile Include="Contracts\ICategoriesServices.cs" />
+    <Compile Include="Contracts\ICitiesServices.cs" />
+    <Compile Include="Contracts\IAddsServices.cs" />
     <Compile Include="Contracts\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvincesServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SellAndBuy.Data.Models\SellAndBuy.Data.Models.csproj">

@@ -8,5 +8,6 @@ namespace SellAndBuy.Services.Contracts
 {
     public interface IService
     {
+       
     }
 }

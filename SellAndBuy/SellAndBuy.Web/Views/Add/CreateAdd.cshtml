@@ -1,10 +1,30 @@
 ﻿@using SellAndBuy.Web.Models.Adds
-@model AddViewModel
+@model ListViewModel
 @{
     ViewBag.Title = "CreateAdd";
 }
 
 <h2>CreateAdd</h2>
-<div>
-    @Html.EditorForModel();
-</div>
+
+@using (Html.BeginForm("CreateAdd", "Add", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.CityName, new { @class = "col-2 col-form-label" })
+    
+    @Html.DropDownListFor(m => m.CityName, new SelectList(Model.Cities, "Value"), "  -----Всички Градове-----  ")
+    <br />
+    @Html.LabelFor(m => m.Category, new { @class = "col-2 col-form-label" })
+   
+    @Html.DropDownListFor(m => m.Category, new SelectList(Model.Categories, "value"), "-----Всички Категории-----  ")
+    <br />
+    @Html.LabelFor(m => m.Description, new { @class = "col-2 col-form-label" })
+  
+    @Html.EditorFor(m=>m.Description)
+    <br />
+    @Html.LabelFor(m => m.Price, new { @class = "col-2 col-form-label" })
+   
+    @Html.EditorFor(m => m.Price)
+    <br />
+
+    <input type="submit" value="Create" />
+
+}

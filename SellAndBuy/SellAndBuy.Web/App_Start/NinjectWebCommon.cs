@@ -86,7 +86,7 @@ namespace SellAndBuy.Web.App_Start
             kernel.Bind(typeof(DbContext), typeof(SqlDbContext)).To<SqlDbContext>().InRequestScope();
             kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepostory<>));
             kernel.Bind<IEfUnitOfWork>().To<EfUnitOfWork>();
-            kernel.Bind<IMapper>().To<Mapper>();
+            kernel.Bind<IMapper>().ToMethod(x => Mapper.Instance).InSingletonScope();
         }        
     }
 }

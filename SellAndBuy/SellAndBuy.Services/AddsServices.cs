@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SellAndBuy.Services
 {
-    public class AddsServices: IAddsService
+    public class AddsServices: IAddsServices
     {
         private readonly IEfRepository<Add> adds;
         private readonly IEfUnitOfWork context;
@@ -20,9 +20,29 @@ namespace SellAndBuy.Services
             this.adds = adds;
             this.context = context;
         }
-        public ICollection<Add> GetAll()
+        public IQueryable<Add> GetAll()
         {
-            return this.adds.All.ToList();
+            return this.adds.All;
+        }
+        public Add FindById(Guid addId)
+        {
+            return this.adds.All.FirstOrDefault(x=>x.Id==addId);
+        }
+        public void CreateAdd(string userId,int city, int category, decimal price, string description)
+        {
+            var currTime = DateTime.Now;
+            var add = new Add();
+            add.UserId = userId;
+            add.CategoryId = category;
+            add.Description = description;
+            add.CityId = city;
+            add.CreatedOn = currTime;
+            add.Price = price;
+            add.IsDeleted = false;
+
+            this.adds.Add(add);
+            this.context.Commit();
+
         }
     }
 }

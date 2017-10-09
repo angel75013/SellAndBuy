@@ -121,10 +121,14 @@ namespace SellAndBuy.Data.Migrations
             var categories = Enum.GetNames(typeof(CategoriesEnum));
             foreach (var categorie in categories)           
             {
-                context.Categories.Add(new Category
-                {
-                    CategorieName = categorie
-                });
+                var curr = context.Categories.FirstOrDefault(x => x.CategorieName == categorie);
+                if (curr==null){
+                    context.Categories.Add(new Category
+                    {
+                        CategorieName = categorie
+                    });
+                }
+               
             }
             context.SaveChanges();
         }

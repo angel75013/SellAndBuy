@@ -24,20 +24,13 @@ namespace SellAndBuy.Data.Migrations
         protected override void Seed(SqlDbContext context)
         {
             this.SeedAdmin(context);
-            if (context.Provinces.Count() == 0)
-            {
-                this.SeedProvinces(context);
-            }
-            
-            if (context.Provinces.Count() == 0)
-            {
-                this.SeedCities(context);
-            }
-            
-            if (context.Provinces.Count() == 0)
-            {
-                SeedCategories(context);
-            }            
+
+            this.SeedProvinces(context);
+
+            this.SeedCities(context);
+
+            SeedCategories(context);
+
 
             base.Seed(context);
         }
@@ -65,51 +58,59 @@ namespace SellAndBuy.Data.Migrations
 
         private void SeedProvinces(SqlDbContext context)
         {
-            var provincesJsonAll = GetEmbeddedResourceAsString(ProvinceFileJson);
-
-            JArray jsonprovincesJsonAll = JArray.Parse(provincesJsonAll) as JArray;
-
-            foreach (var province in jsonprovincesJsonAll)
+            if (context.Provinces.Count() == 0)
             {
-                context.Provinces.Add(new Province
-                {
-                    ProvinceName = (string)province
-                });
+                var provincesJsonAll = GetEmbeddedResourceAsString(ProvinceFileJson);
 
+                JArray jsonprovincesJsonAll = JArray.Parse(provincesJsonAll) as JArray;
+
+                foreach (var province in jsonprovincesJsonAll)
+                {
+                    context.Provinces.Add(new Province
+                    {
+                        ProvinceName = (string)province
+                    });
+
+                }
+                context.SaveChanges();
             }
-            context.SaveChanges();
+
         }
 
         private void SeedCities(SqlDbContext context)
         {
-            var citiesJsonAll = GetEmbeddedResourceAsString(CitiesFileJson);
-
-            JArray jsonCitiesJsonAll = JArray.Parse(citiesJsonAll) as JArray;
-
-            foreach (var obj in jsonCitiesJsonAll)
+            if (context.Cities.Count() == 0)
             {
-                var provenceName = obj["Province"].ToString();
-                var currentProvince = context.Provinces.FirstOrDefault(x => x.ProvinceName == provenceName);
 
-                if (currentProvince == null)
-                {
-                    var newProvince = new Province
-                    {
-                        ProvinceName = provenceName
-                    };
-                    context.Provinces.AddOrUpdate(newProvince);
-                    context.SaveChanges();
-                    currentProvince = context.Provinces.First(x => x.ProvinceName == provenceName);
-                }
+                var citiesJsonAll = GetEmbeddedResourceAsString(CitiesFileJson);
 
-                foreach (var city in obj["Cities"])
+                JArray jsonCitiesJsonAll = JArray.Parse(citiesJsonAll) as JArray;
+
+                foreach (var obj in jsonCitiesJsonAll)
                 {
-                    var newCity = new City
+                    var provenceName = obj["Province"].ToString();
+                    var currentProvince = context.Provinces.FirstOrDefault(x => x.ProvinceName == provenceName);
+
+                    if (currentProvince == null)
                     {
-                        Name = city.ToString(),
-                        ProvinceId = currentProvince.Id
-                    };
-                    context.Cities.AddOrUpdate(newCity);
+                        var newProvince = new Province
+                        {
+                            ProvinceName = provenceName
+                        };
+                        context.Provinces.AddOrUpdate(newProvince);
+                        context.SaveChanges();
+                        currentProvince = context.Provinces.First(x => x.ProvinceName == provenceName);
+                    }
+
+                    foreach (var city in obj["Cities"])
+                    {
+                        var newCity = new City
+                        {
+                            Name = city.ToString(),
+                            ProvinceId = currentProvince.Id
+                        };
+                        context.Cities.AddOrUpdate(newCity);
+                    }
                 }
             }
         }
@@ -128,20 +129,23 @@ namespace SellAndBuy.Data.Migrations
         }
         private void SeedCategories(SqlDbContext context)
         {
-
-            var categories = Enum.GetNames(typeof(CategoriesEnum));
-            foreach (var categorie in categories)           
+            if (context.Categories.Count() == 0)
             {
-                var curr = context.Categories.FirstOrDefault(x => x.CategorieName == categorie);
-                if (curr==null){
-                    context.Categories.Add(new Category
+                var categories = Enum.GetNames(typeof(CategoriesEnum));
+                foreach (var categorie in categories)
+                {
+                    var curr = context.Categories.FirstOrDefault(x => x.CategorieName == categorie);
+                    if (curr == null)
                     {
-                        CategorieName = categorie
-                    });
+                        context.Categories.Add(new Category
+                        {
+                            CategorieName = categorie
+                        });
+                    }
+
                 }
-               
+                context.SaveChanges();
             }
-            context.SaveChanges();
         }
     }
 }

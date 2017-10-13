@@ -35,12 +35,15 @@ namespace SellAndBuy.Data.Models
 
         public int CityId { get; set; }
         public string UserId { get; set; }
-        public int CategoryId { get; set; }       
+        public int CategoryId { get; set; }
+        public string ImgName { get; set; }
 
 
         public virtual Category Category { get; set; }
         public virtual User User { get; set; }
-        public virtual City City { get; set; }       
+        public virtual City City { get; set; }
+        
+
     }
 }
 

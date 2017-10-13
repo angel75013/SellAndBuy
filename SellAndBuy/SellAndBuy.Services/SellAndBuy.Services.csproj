@@ -48,6 +48,7 @@
     <Compile Include="Contracts\ICitiesServices.cs" />
     <Compile Include="Contracts\IAddsServices.cs" />
     <Compile Include="Contracts\IService.cs" />
+    <Compile Include="ImagesServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvincesServices.cs" />
   </ItemGroup>

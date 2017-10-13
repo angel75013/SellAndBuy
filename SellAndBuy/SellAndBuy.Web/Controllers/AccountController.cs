@@ -76,7 +76,7 @@ namespace SellAndBuy.Web.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -152,7 +152,7 @@ namespace SellAndBuy.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Username, Email = model.Email,PhoneNumber=model.PhoneNumber,Name=model.Name };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -166,7 +166,7 @@ namespace SellAndBuy.Web.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                AddErrors(result);
+               
             }
 
             // If we got this far, something failed, redisplay form

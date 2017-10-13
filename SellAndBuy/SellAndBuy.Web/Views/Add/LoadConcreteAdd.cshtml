@@ -1,12 +1,14 @@
 ﻿@using SellAndBuy.Web.Models.Adds
-@model  AddViewModel
+@model  UserAddViewModel
 @{
-    ViewBag.Title = "LoadConcreteAdd";
+    ViewBag.Title = "Index";
 }
 
-<h2>@Model.Description</h2>
-<h2>@Model.CreatedOn</h2>
-<h2>@Model.Price</h2>
-<h2>@Model.UserId</h2>
 
+<div class="col-lg-3">
+    @Html.Partial("_LoadDetails", Model.Adds)   
+    <p>@Model.TelephoneNumber"</p>
+    <p>@Model.Email</p>
+    <p>@Model.Name</p>
+</div>
 

@@ -28,7 +28,14 @@ namespace SellAndBuy.Services
         {
             return this.adds.All.FirstOrDefault(x=>x.Id==addId);
         }
-        public void CreateAdd(string userId,int city, int category, decimal price, string description)
+        public  void  FindByIdAndDelete(Guid addId)
+        {
+            var result= this.adds.All.FirstOrDefault(x => x.Id == addId);
+            result.IsDeleted = true;
+            context.Commit();
+        }
+       
+        public void CreateAdd(string userId,int city, int category, decimal price, string description, string ImgName)
         {
             var currTime = DateTime.Now;
             var add = new Add();
@@ -39,6 +46,7 @@ namespace SellAndBuy.Services
             add.CreatedOn = currTime;
             add.Price = price;
             add.IsDeleted = false;
+            add.ImgName = ImgName;
 
             this.adds.Add(add);
             this.context.Commit();

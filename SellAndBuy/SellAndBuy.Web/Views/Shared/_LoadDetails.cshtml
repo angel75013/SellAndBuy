@@ -1,0 +1,13 @@
+﻿@using SellAndBuy.Web.Models.Adds
+@model  AddViewModel
+@{
+    ViewBag.Title = "LoadConcreteAdd";
+}
+<div>
+    <img src="@Url.Content("~/Content/Upload/"+Model.ImgName)" class="img-responsive" width="200" height="200" alt="no images found">
+    <h2>@Model.Description</h2>
+    <h2>@Model.CreatedOn</h2>
+    <h2>@Model.Price</h2>
+   
+</div>
+

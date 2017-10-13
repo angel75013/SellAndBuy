@@ -6,7 +6,7 @@
 
 <h2>CreateAdd</h2>
 
-@using (Html.BeginForm("CreateAdd", "Add", FormMethod.Post))
+@using (Html.BeginForm("CreateAdd", "Add", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.LabelFor(m => m.CityName, new { @class = "col-2 col-form-label" })
     
@@ -24,6 +24,8 @@
    
     @Html.EditorFor(m => m.Price)
     <br />
+    
+    <input type="file" name="image" />
 
     <input type="submit" value="Create" />
 

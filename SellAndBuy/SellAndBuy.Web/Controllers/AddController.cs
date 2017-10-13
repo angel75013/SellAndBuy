@@ -11,6 +11,10 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using AutoMapper.QueryableExtensions;
+using System.IO;
+using System.Reflection;
+using System.Web.Security;
+
 
 namespace SellAndBuy.Web.Controllers
 {
@@ -21,17 +25,20 @@ namespace SellAndBuy.Web.Controllers
         private readonly ICategoriesServices categoriesService;
         private readonly IProvincesServices provinceServices;
         private readonly ICitiesServices citiesServices;
+        private readonly ImagesServices imageService;
 
         public AddController(IAddsServices service, IMapper mapper,
             ICategoriesServices categoriesService,
             IProvincesServices provinceServices,
-            ICitiesServices citiesServices)
+            ICitiesServices citiesServices,
+            ImagesServices imageService)
         {
             this.addService = service;
             this.mapper = mapper;
             this.categoriesService = categoriesService;
             this.provinceServices = provinceServices;
             this.citiesServices = citiesServices;
+            this.imageService = imageService;
         }
         public ActionResult Index()
         {
@@ -53,48 +60,59 @@ namespace SellAndBuy.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateAdd(string cityName, string category, decimal price, string description)
+        public ActionResult CreateAdd(string cityName, string category, decimal price, string description, HttpPostedFileBase image)
         {
+
             var user = User.Identity.GetUserId();
             var categoryId = this.categoriesService.GetId(category);
-
             var cityId = this.citiesServices.GetId(cityName);
 
+            var fileName = Path.GetFileName(image.FileName);
+            string randomFileName = Path.GetFileNameWithoutExtension(fileName) +
+                                "_" +
+                                Guid.NewGuid().ToString()
+                                    + Path.GetExtension(fileName);
+            string path = Path.Combine(Server.MapPath("~/Content/Upload/"), randomFileName);
+            image.SaveAs(path);
+            this.imageService.CreateImage(path);
 
-            this.addService.CreateAdd(user, cityId, categoryId, price, description);
 
-            return this.RedirectToAction("Index");
+
+
+            this.addService.CreateAdd(user, cityId, categoryId, price, description, randomFileName);
+
+            return RedirectToAction("MyAdds", "Add");
 
         }
         [HttpPost]
         public ActionResult Search(SearchViewModel searchModel)
         {
-            IQueryable<AddViewModel> result = this.addService.GetAll().ProjectTo<AddViewModel>();
-            
-           if (searchModel != null)
-           {
-               if (!string.IsNullOrEmpty(searchModel.Province))
-               {
-                   var searchModelProvinceId = this.provinceServices.GetId(searchModel.Province);
-                   result = result.Where(x => x.ProvinceId == searchModelProvinceId);
-               }
-          
-               if (!string.IsNullOrEmpty(searchModel.City))
-               {
-                   var searchModelCityId = this.citiesServices.GetId(searchModel.City);
-                   result = result.Where(x => x.CityId == searchModelCityId);
-          
-               }
-          
-               if (!string.IsNullOrEmpty(searchModel.Category))
-               {
-                   var searchModelCateoryId = this.categoriesService.GetId(searchModel.Category);
-                   result = result.Where(x => x.CategoryId == searchModelCateoryId);
-               }
-          
-               if (!string.IsNullOrEmpty(searchModel.Description))
-                   result = result.Where(x => x.Description.Contains(searchModel.Description));
-           }
+            IQueryable<AddViewModel> result = this.addService.GetAll().Where(x=>x.IsDeleted == false).ProjectTo<AddViewModel>();
+
+            if (searchModel != null)
+            {
+                if (!string.IsNullOrEmpty(searchModel.Province))
+                {
+                    var searchModelProvinceId = this.provinceServices.GetId(searchModel.Province);
+                    result = result.Where(x => x.ProvinceId == searchModelProvinceId);
+                }
+
+                if (!string.IsNullOrEmpty(searchModel.City))
+                {
+                    var searchModelCityId = this.citiesServices.GetId(searchModel.City);
+                    result = result.Where(x => x.CityId == searchModelCityId);
+
+                }
+
+                if (!string.IsNullOrEmpty(searchModel.Category))
+                {
+                    var searchModelCateoryId = this.categoriesService.GetId(searchModel.Category);
+                    result = result.Where(x => x.CategoryId == searchModelCateoryId);
+                }
+
+                if (!string.IsNullOrEmpty(searchModel.Description))
+                    result = result.Where(x => x.Description.Contains(searchModel.Description));
+            }
 
 
             return View("SearchedAdds", result.ToList());
@@ -102,12 +120,12 @@ namespace SellAndBuy.Web.Controllers
         [HttpGet]
         public ActionResult Search()
         {
+            //da se mapnat kam view modeli
             var allCategoris = this.categoriesService.GetAll().Select(x => x.CategorieName).ToList();
             var allProvinces = this.provinceServices.GetAll().Select(x => x.ProvinceName).ToList();
             var allCities = this.citiesServices.GetAll().Select(x => x.Name).ToList();
 
 
-            //parvo oblast => da se zaredi list ot gradoveteate 
             var searchModel = new SearchViewModel();
             searchModel.Categories = allCategoris;
             searchModel.Provinces = allProvinces;
@@ -118,13 +136,20 @@ namespace SellAndBuy.Web.Controllers
         }
         public ActionResult LoadConcreteAdd(Guid Id)
         {
+            
             var foundAdd = this.addService.GetAll().ProjectTo<AddViewModel>().SingleOrDefault(x => x.Id == Id);
-            return View(foundAdd);
+            var model =new  UserAddViewModel();
+
+            model.Adds = foundAdd;
+            model.TelephoneNumber = foundAdd.Phone;
+            model.Email = foundAdd.Email;
+            model.Name = foundAdd.Name;
+
+            return View(model);
         }
         public JsonResult SelectCities(string id)
         {
-            
-            if(id!= "")
+            if (id != "")
             {
                 var provinceId = this.provinceServices.GetId(id);
                 var cities = this.citiesServices.GetCitiesByProvinceId(provinceId).ProjectTo<CityViewModel>();
@@ -138,8 +163,22 @@ namespace SellAndBuy.Web.Controllers
 
             }
 
-            
-            
+        }
+        
+        public ActionResult MyAdds(string userId)
+        {
+            var user = User.Identity.GetUserId();
+            var usersAdds = this.addService.GetAll().Where(x => x.UserId == user&&x.IsDeleted==false).ProjectTo<AddViewModel>();
+      
+            return View(usersAdds);
+        }
+        [HttpGet  ]
+        public ActionResult DeleteAdd(Guid Id)
+        {
+            this.addService.FindByIdAndDelete(Id);
+            var user = User.Identity.GetUserId();
+            this.TempData["add"] = "your add is deleted";
+            return RedirectToAction("MyAdds", "Add",new {userId=user });
         }
     }
 }

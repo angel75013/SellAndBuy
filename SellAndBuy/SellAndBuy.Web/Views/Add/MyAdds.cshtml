@@ -1,0 +1,17 @@
+﻿@using SellAndBuy.Web.Models.Adds
+@model  IEnumerable<AddViewModel>
+@{
+    ViewBag.Title = "MyAdds";
+}
+<h1>@TempData["add"]</h1>
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3">
+            @Html.Partial("_LoadDetails", item)
+            @Ajax.ActionLink("Delete", "DeleteAdd", "Add", new { id = item.Id },null, new { onclick = "return confirm('Are you sure you want to click this link?')" }) 
+        </div>
+
+    }
+</div>

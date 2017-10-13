@@ -21,14 +21,13 @@ namespace SellAndBuy.Data.Models
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
+            userIdentity.AddClaim(new Claim("Phone", this.PhoneNumber.ToString()));
             return userIdentity;
-        }
-   
-        public string Email { get; set; }
+        }  
+       
 
         public string Name { get; set; }
 
-        public int TelephoneNumber { get; set; }
         public int? CityId { get; set; }
 
         public virtual City City { get; set; }

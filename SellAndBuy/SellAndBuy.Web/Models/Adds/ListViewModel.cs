@@ -18,7 +18,7 @@ namespace SellAndBuy.Web.Models.Adds
                        
         public string Category { get; set; }
 
-       
+
         public ICollection<string> Cities { get; set; }
 
         public ICollection<string> Provinces { get; set; }

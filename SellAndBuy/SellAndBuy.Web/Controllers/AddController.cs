@@ -15,6 +15,8 @@ using System.IO;
 using System.Reflection;
 using System.Web.Security;
 
+using SellAndBuy.Web.Models.Adds.CityModels;
+using SellAndBuy.Web.Models.Adds.AddModels;
 
 namespace SellAndBuy.Web.Controllers
 {
@@ -25,20 +27,20 @@ namespace SellAndBuy.Web.Controllers
         private readonly ICategoriesServices categoriesService;
         private readonly IProvincesServices provinceServices;
         private readonly ICitiesServices citiesServices;
-   
+
 
         public AddController(IAddsServices service, IMapper mapper,
             ICategoriesServices categoriesService,
             IProvincesServices provinceServices,
             ICitiesServices citiesServices)
-          
+
         {
             this.addService = service;
             this.mapper = mapper;
             this.categoriesService = categoriesService;
             this.provinceServices = provinceServices;
             this.citiesServices = citiesServices;
-           
+
         }
         public ActionResult Index()
         {
@@ -48,38 +50,46 @@ namespace SellAndBuy.Web.Controllers
         public ActionResult CreateAdd()
         {
             var allCategoris = this.categoriesService.GetAll().Select(x => x.CategorieName).ToList();
-            var allProvinces = this.provinceServices.GetAll().Select(x => x.ProvinceName).ToList();
             var allCities = this.citiesServices.GetAll().Select(x => x.Name).ToList();
 
 
-            var searchModel = new ListViewModel();
+            var searchModel = new CreateAddViewModel();
             searchModel.Categories = allCategoris;
-            searchModel.Provinces = allProvinces;
             searchModel.Cities = allCities;
             return View(searchModel);
         }
 
         [HttpPost]
-        public ActionResult CreateAdd(string cityName, string category, decimal price, string description, HttpPostedFileBase image)
-        {
-            var user = User.Identity.GetUserId();
-            var categoryId = this.categoriesService.GetId(category);
-            var cityId = this.citiesServices.GetId(cityName);
+        [Authorize]
+        public ActionResult CreateAdd(CreationalAddModel model)
+        {            
+            if (this.ModelState.IsValid)
+            {
+                var user = User.Identity.GetUserId();
+                var categoryId = this.categoriesService.GetId(model.Category);
+                var cityId = this.citiesServices.GetId(model.CityName);
+                var image = model.File;
 
-            var fileName = Path.GetFileName(image.FileName);
-            string randomFileName = Path.GetFileNameWithoutExtension(fileName) +
-                                "_" +
-                                Guid.NewGuid().ToString()
-                                    + Path.GetExtension(fileName);
-            string path = Path.Combine(Server.MapPath("~/Content/Upload/"), randomFileName);
-            image.SaveAs(path);
+                var fileName = Path.GetFileName(image.FileName);
+                string randomFileName = Path.GetFileNameWithoutExtension(fileName) +
+                                    "_" +
+                                    Guid.NewGuid().ToString()
+                                        + Path.GetExtension(fileName);
+                string path = Path.Combine(Server.MapPath("~/Content/Upload/"), randomFileName);
+                image.SaveAs(path);
 
-            this.addService.CreateAdd(user, cityId, categoryId, price, description, randomFileName);
+                this.addService.CreateAdd(user, cityId, categoryId, model.Price, model.Description, randomFileName);
 
-            return RedirectToAction("MyAdds", "Add");
+                return RedirectToAction("MyAdds", "Add");
+
+            }
+            else
+            {               
+                return View();
+            }           
         }
         [HttpPost]
-        public ActionResult Search(SearchViewModel searchModel)
+        public ActionResult Search(SearchedValuesViewModel searchModel)
         {
             IQueryable<AddViewModel> result = this.addService.GetAllNotDeleted().ProjectTo<AddViewModel>();
 
@@ -107,14 +117,13 @@ namespace SellAndBuy.Web.Controllers
                 if (!string.IsNullOrEmpty(searchModel.Description))
                     result = result.Where(x => x.Description.Contains(searchModel.Description));
             }
+            var res = result.ProjectTo<ResultSearchAddViewModel>();
 
-
-            return View("SearchedAdds", result.ToList());
+            return View("SearchedAdds", res);
         }
         [HttpGet]
         public ActionResult Search()
         {
-            //da se mapnat kam view modeli
             var allCategoris = this.categoriesService.GetAll().Select(x => x.CategorieName).ToList();
             var allProvinces = this.provinceServices.GetAll().Select(x => x.ProvinceName).ToList();
             var allCities = this.citiesServices.GetAll().Select(x => x.Name).ToList();
@@ -125,54 +134,49 @@ namespace SellAndBuy.Web.Controllers
             searchModel.Provinces = allProvinces;
             searchModel.Cities = allCities;
 
-
             return View(searchModel);
         }
+        [Authorize]
         public ActionResult LoadConcreteAdd(Guid Id)
         {
+            var foundAdd = this.addService.GetAllNotDeleted().ProjectTo<AddDetailViewModel>().FirstOrDefault(x => x.Id == Id);
             
-            var foundAdd = this.addService.GetAll().ProjectTo<AddViewModel>().SingleOrDefault(x => x.Id == Id);
-            var model =new  UserAddViewModel();
-
-            model.Adds = foundAdd;
-            model.TelephoneNumber = foundAdd.Phone;
-            model.Email = foundAdd.Email;
-            model.Name = foundAdd.Name;
-
-            return View(model);
+            return View(foundAdd);
         }
         public JsonResult SelectCities(string id)
         {
             if (id != "")
             {
                 var provinceId = this.provinceServices.GetId(id);
-                var cities = this.citiesServices.GetCitiesByProvinceId(provinceId).ProjectTo<CityViewModel>();
+                var cities = this.citiesServices.GetCitiesByProvinceId(provinceId).ProjectTo<SearchCityViewModel>();
                 return Json(cities, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                var cities = this.citiesServices.GetAll().ProjectTo<CityViewModel>();
+                var cities = this.citiesServices.GetAll().ProjectTo<SearchCityViewModel>();
 
                 return Json(cities, JsonRequestBehavior.AllowGet);
 
             }
 
         }
-        
+        [Authorize]
         public ActionResult MyAdds(string userId)
         {
             var user = User.Identity.GetUserId();
-            var usersAdds = this.addService.GetAll().Where(x => x.UserId == user&&x.IsDeleted==false).ProjectTo<AddViewModel>();
-      
+            var usersAdds = this.addService.GetAllNotDeleted().Where(x => x.UserId == user && x.IsDeleted == false).ProjectTo<MyAddsViewModel>();
+
             return View(usersAdds);
         }
-        [HttpGet  ]
+        [HttpGet]
         public ActionResult DeleteAdd(Guid Id)
         {
+            var foundAdd = this.addService.FindById(Id);
             this.addService.FindByIdAndDelete(Id);
             var user = User.Identity.GetUserId();
-            this.TempData["add"] = "your add is deleted";
-            return RedirectToAction("MyAdds", "Add",new {userId=user });
+            this.TempData["add"] = String.Format(@"Your add {0} 
+                                                           was successully deleted",foundAdd.Description);
+            return RedirectToAction("MyAdds", "Add", new { userId = user });
         }
     }
 }

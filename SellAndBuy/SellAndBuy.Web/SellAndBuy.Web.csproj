@@ -220,11 +220,15 @@
     </Compile>
     <Compile Include="Infrastructure\QueryableExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Adds\AddViewModel.cs" />
-    <Compile Include="Models\Adds\CityViewModel.cs" />
-    <Compile Include="Models\Adds\ListViewModel.cs" />
+    <Compile Include="Models\Adds\AddModels\AddDetailViewModel.cs" />
+    <Compile Include="Models\Adds\AddModels\CreationalAddModel.cs" />
+    <Compile Include="Models\Adds\AddModels\MyAddsViewModel.cs" />
+    <Compile Include="Models\Adds\AddModels\ResultSearchAddViewModel.cs" />
+    <Compile Include="Models\Adds\AddModels\AddViewModel.cs" />
+    <Compile Include="Models\Adds\CityModels\SearchCityViewModel.cs" />
+    <Compile Include="Models\Adds\CreateAddViewModel.cs" />
+    <Compile Include="Models\Adds\SearchedValuesViewModel.cs" />
     <Compile Include="Models\Adds\SearchViewModel.cs" />
-    <Compile Include="Models\Adds\UserAddViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -285,7 +289,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Add\Index.cshtml" />
     <Content Include="Views\Add\CreateAdd.cshtml" />
     <Content Include="Views\Add\Search.cshtml" />
     <Content Include="Views\Shared\_LoadDetails.cshtml" />
@@ -299,6 +302,8 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Content\Upload\" />
+    <Folder Include="Models\Adds\CategoryModels\" />
+    <Folder Include="Models\Adds\ProvinceModels\" />
     <Folder Include="Views\Shared\TemplateDisplays\" />
   </ItemGroup>
   <ItemGroup>

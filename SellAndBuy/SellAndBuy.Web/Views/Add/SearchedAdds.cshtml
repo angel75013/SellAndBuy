@@ -1,5 +1,5 @@
-﻿@using SellAndBuy.Web.Models.Adds
-@model IEnumerable<AddViewModel>
+﻿@using SellAndBuy.Web.Models.Adds.AddModels
+@model IEnumerable<ResultSearchAddViewModel>
 @{
     ViewBag.Title = "SearchedAdds";
 }
@@ -11,14 +11,13 @@
                 
                 <div class="card-block">
                     <div>
-                        <a href="@Url.Action("LoadConcreteAdd", "Add", new { id = item.Id }, null)">
+                        <a href="@Url.Action("LoadConcreteAdd", "Add", new { id = item.Id}, null)">
                             <img src="@Url.Content("~/Content/Upload/"+item.ImgName)" class="img-responsive" alt=@item.Id>
                         </a>
-                    </div>
-                    
-                    <!--Title-->
+                    </div>                    
+                   
                     <h5 class="card-title">Uploaded: @string.Format("{0:dd/MM/yyyy}", item.CreatedOn), Price: @item.Price</h5>
-                    <!--Text-->
+                  
                     <p class="card-text">Description: @item.Description</p>                    
                    
                 </div>

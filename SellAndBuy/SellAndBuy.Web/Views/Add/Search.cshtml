@@ -1,5 +1,10 @@
 ﻿@using SellAndBuy.Web.Models.Adds
 @model SearchViewModel
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
 
 
 @using (@Html.BeginForm())
@@ -8,12 +13,14 @@
     @Html.EditorFor(m => m.Description)
 
 
-    @Html.DropDownListFor(m => m.Province, new SelectList(Model.Provinces, "Value"), "Всички Области", new { @class = "form-control", @onchange = "FillCity()" })
+    @Html.DropDownListFor(m => m.Province, new SelectList(Model.Provinces, "Value"),
+                  "Всички Области", new { @class = "form-control", @onchange = "FillCity()" })
     @Html.DropDownListFor(m => m.City, new SelectList(Model.Cities, "Value"),
                   "Всички Градове",
                   new { @class = "form-control" })
 
-    @Html.DropDownListFor(m => m.Category, new SelectList(Model.Categories, "value"), "-----Всички Категории-----  ")
+    @Html.DropDownListFor(m => m.Category, new SelectList(Model.Categories, "value"),
+                    "-----Всички Категории-----  ")
 
 
     <input type="submit" value="search" />
@@ -31,16 +38,16 @@
             data: { id: id },
             success: function (cities) {
                 $("#City").html("");
-                if (id == '') {                  
+                if (id == '') {
                     $("#City").append($('<option></option>').val("").html("Всички Градове"));
                 }
-               
+
                 $.each(cities, function (i, city) {
                     $("#City").append(
                         $('<option></option>').val(city.Name).html(city.Name));
                 });
-            }        
-    });
-  }
+            }
+        });
+    }
 </script>
 @Scripts.Render("~/bundles/jquery")

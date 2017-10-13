@@ -21,8 +21,8 @@ namespace SellAndBuy.Data.Models
         public decimal Price { get; set; }
 
         public string Description { get; set; }
+        public string ImgName { get; set; }
 
-        //public string PhotosPath { get; set; }
 
         [Index]
         public bool IsDeleted { get; set; }
@@ -36,13 +36,11 @@ namespace SellAndBuy.Data.Models
         public int CityId { get; set; }
         public string UserId { get; set; }
         public int CategoryId { get; set; }
-        public string ImgName { get; set; }
-
+       
 
         public virtual Category Category { get; set; }
         public virtual User User { get; set; }
-        public virtual City City { get; set; }
-        
+        public virtual City City { get; set; }        
 
     }
 }

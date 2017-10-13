@@ -1,14 +1,21 @@
-﻿@using SellAndBuy.Web.Models.Adds
-@model  UserAddViewModel
+﻿@using SellAndBuy.Web.Models.Adds.AddModels
+@model  AddDetailViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.Description;
 }
 
 
 <div class="col-lg-3">
-    @Html.Partial("_LoadDetails", Model.Adds)   
-    <p>@Model.TelephoneNumber"</p>
-    <p>@Model.Email</p>
-    <p>@Model.Name</p>
+    <img src="@Url.Content("~/Content/Upload/"+Model.ImgName)" class="img-responsive" width="200" height="200" alt="no images found">
+    <h2>@Model.Description</h2>
+    <h2>@Model.CreatedOn</h2>
+    <h2>@Model.Price</h2>
+
+    <div>
+        <p>@Model.Phone</p>
+        <p>@Model.Email</p>
+        <p>@Model.UserName</p>
+    </div>
+
 </div>
 

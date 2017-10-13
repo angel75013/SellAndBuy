@@ -56,7 +56,8 @@ namespace SellAndBuy.Services
 
         public IQueryable<Add> GetAllNotDeleted()
         {
-            return this.adds.All.Where(x => x.IsDeleted == false);
+            var res = this.adds.All.Where(x => x.IsDeleted == false);
+            return res;
         }
     }
 }

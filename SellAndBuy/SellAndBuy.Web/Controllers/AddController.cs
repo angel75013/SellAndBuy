@@ -25,20 +25,20 @@ namespace SellAndBuy.Web.Controllers
         private readonly ICategoriesServices categoriesService;
         private readonly IProvincesServices provinceServices;
         private readonly ICitiesServices citiesServices;
-        private readonly ImagesServices imageService;
+   
 
         public AddController(IAddsServices service, IMapper mapper,
             ICategoriesServices categoriesService,
             IProvincesServices provinceServices,
-            ICitiesServices citiesServices,
-            ImagesServices imageService)
+            ICitiesServices citiesServices)
+          
         {
             this.addService = service;
             this.mapper = mapper;
             this.categoriesService = categoriesService;
             this.provinceServices = provinceServices;
             this.citiesServices = citiesServices;
-            this.imageService = imageService;
+           
         }
         public ActionResult Index()
         {
@@ -62,7 +62,6 @@ namespace SellAndBuy.Web.Controllers
         [HttpPost]
         public ActionResult CreateAdd(string cityName, string category, decimal price, string description, HttpPostedFileBase image)
         {
-
             var user = User.Identity.GetUserId();
             var categoryId = this.categoriesService.GetId(category);
             var cityId = this.citiesServices.GetId(cityName);
@@ -74,20 +73,15 @@ namespace SellAndBuy.Web.Controllers
                                     + Path.GetExtension(fileName);
             string path = Path.Combine(Server.MapPath("~/Content/Upload/"), randomFileName);
             image.SaveAs(path);
-            this.imageService.CreateImage(path);
-
-
-
 
             this.addService.CreateAdd(user, cityId, categoryId, price, description, randomFileName);
 
             return RedirectToAction("MyAdds", "Add");
-
         }
         [HttpPost]
         public ActionResult Search(SearchViewModel searchModel)
         {
-            IQueryable<AddViewModel> result = this.addService.GetAll().Where(x=>x.IsDeleted == false).ProjectTo<AddViewModel>();
+            IQueryable<AddViewModel> result = this.addService.GetAllNotDeleted().ProjectTo<AddViewModel>();
 
             if (searchModel != null)
             {

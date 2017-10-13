@@ -222,7 +222,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Adds\AddViewModel.cs" />
     <Compile Include="Models\Adds\CityViewModel.cs" />
-    <Compile Include="Models\Adds\ImageViewModel.cs" />
     <Compile Include="Models\Adds\ListViewModel.cs" />
     <Compile Include="Models\Adds\SearchViewModel.cs" />
     <Compile Include="Models\Adds\UserAddViewModel.cs" />

@@ -24,6 +24,7 @@ namespace SellAndBuy.Services
         {
             return this.adds.All;
         }
+        
         public Add FindById(Guid addId)
         {
             return this.adds.All.FirstOrDefault(x=>x.Id==addId);
@@ -51,6 +52,11 @@ namespace SellAndBuy.Services
             this.adds.Add(add);
             this.context.Commit();
 
+        }       
+
+        public IQueryable<Add> GetAllNotDeleted()
+        {
+            return this.adds.All.Where(x => x.IsDeleted == false);
         }
     }
 }

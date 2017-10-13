@@ -69,7 +69,6 @@
     <Compile Include="CategoriesEnum.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="City.cs" />
-    <Compile Include="Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Province.cs" />
     <Compile Include="User.cs" />

@@ -15,9 +15,8 @@ namespace SellAndBuy.Web.Models.Adds
         const int minLenght = 4;
         const int maxLenght = 200;
         [Required]
-        [Range(0.01, Double.MaxValue, ErrorMessage = "The Price must be at least 0.01€")]
-        [RegularExpression(@"^\d+\.\d{0,3}$")]
-        public decimal Price { get; set; }
+        [Range(0, double.MaxValue, ErrorMessage = "Please enter valid Price")]
+        public double Price { get; set; }
         [Required]
         [StringLength(maxLenght, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = minLenght)]
         public string Description { get; set; }

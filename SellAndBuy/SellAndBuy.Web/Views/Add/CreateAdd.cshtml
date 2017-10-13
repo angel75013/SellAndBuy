@@ -35,7 +35,7 @@
     <div class="form-group">
         <div class="col-md-10">
             @Html.LabelFor(m => m.Price, new { @class = "col-2 col-form-label" })
-            @Html.EditorFor(m => m.Price, new { @Value = "" })
+            @Html.EditorFor(m => m.Price)
             @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
         </div>
     </div>

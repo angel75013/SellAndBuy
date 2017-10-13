@@ -5,9 +5,9 @@
 }
 <div>
     <img src="@Url.Content("~/Content/Upload/"+Model.ImgName)" class="img-responsive" width="200" height="200" alt="no images found">
-    <h2>@Model.Description</h2>
-    <h2>@Model.CreatedOn</h2>
-    <h2>@Model.Price</h2>
+    <h2>@Html.DisplayFor(Model => Model.Description)</h2>
+    <h2>@Html.DisplayFor(Model => Model.CreatedOn)</h2>
+    <h2>@Html.DisplayFor(Model => Model.Price)</h2>
    
 </div>
 

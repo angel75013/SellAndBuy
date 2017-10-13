@@ -13,6 +13,6 @@ namespace SellAndBuy.Web.Models.Adds.AddModels
         public Guid Id { get; set; }
         public string ImgName { get; set; }
         public DateTime CreatedOn { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace SellAndBuy.Services
             context.Commit();
         }
        
-        public void CreateAdd(string userId,int city, int category, decimal price, string description, string ImgName)
+        public void CreateAdd(string userId,int city, int category, double price, string description, string ImgName)
         {
             var currTime = DateTime.Now;
             var add = new Add();

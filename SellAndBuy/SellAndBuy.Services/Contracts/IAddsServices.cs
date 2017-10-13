@@ -10,6 +10,6 @@ namespace SellAndBuy.Services.Contracts
         Add FindById(Guid addId);
         IQueryable<Add> GetAllNotDeleted();
         void FindByIdAndDelete(Guid addId);
-        void CreateAdd(string userId, int city, int category, decimal price, string description, string ImgName);
+        void CreateAdd(string userId, int city, int category, double price, string description, string ImgName);
     }
 }

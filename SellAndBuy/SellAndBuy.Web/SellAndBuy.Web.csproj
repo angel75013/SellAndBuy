@@ -295,6 +295,8 @@
     <Content Include="Views\Add\SearchedAdds.cshtml" />
     <Content Include="Views\Add\MyAdds.cshtml" />
     <Content Include="Views\Add\LoadConcreteAdd.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\double.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\dateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -302,9 +304,6 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Content\Upload\" />
-    <Folder Include="Models\Adds\CategoryModels\" />
-    <Folder Include="Models\Adds\ProvinceModels\" />
-    <Folder Include="Views\Shared\TemplateDisplays\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

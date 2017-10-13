@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
+using System.ComponentModel.DataAnnotations;
 
 namespace SellAndBuy.Web.Models.Adds.AddModels
 {
@@ -13,8 +14,9 @@ namespace SellAndBuy.Web.Models.Adds.AddModels
         public string Description { get; set; }
         public Guid Id { get; set; }
         public string ImgName { get; set; }
+        [DataType(DataType.Date)]
         public DateTime CreatedOn { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public bool IsDeleted { get; set; }
 
 

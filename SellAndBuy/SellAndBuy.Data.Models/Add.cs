@@ -18,7 +18,7 @@ namespace SellAndBuy.Data.Models
         [Key]
         public Guid Id { get; set; }
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         public string Description { get; set; }
         public string ImgName { get; set; }

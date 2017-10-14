@@ -62,6 +62,7 @@ namespace SellAndBuy.Web.Controllers
 
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateAdd(CreationalAddModel model)
         {            
             if (this.ModelState.IsValid)
@@ -90,6 +91,7 @@ namespace SellAndBuy.Web.Controllers
             }           
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Search(SearchedValuesViewModel searchModel)
         {
             IQueryable<AddViewModel> result = this.addService.GetAllNotDeleted().ProjectTo<AddViewModel>();
@@ -177,10 +179,12 @@ namespace SellAndBuy.Web.Controllers
 
             return View(usersAdds);
         }
-        [HttpGet]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteAdd(Guid Id)
         {
             var foundAdd = this.addService.FindById(Id);
+            
             this.addService.FindByIdAndDelete(Id);
             var user = User.Identity.GetUserId();
             this.TempData["add"] = String.Format(@"Your add {0} 

@@ -8,6 +8,7 @@
 
 @using (Html.BeginForm("CreateAdd", "Add", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.AntiForgeryToken()
     <div class="form-group">
         <div class="col-md-10">
             @Html.LabelFor(m => m.CityName, new { @class = "col-2 col-form-label" })

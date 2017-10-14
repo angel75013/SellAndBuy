@@ -150,7 +150,12 @@ namespace SellAndBuy.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            var name = await UserManager.FindByNameAsync(model.Username);
+            if (name != null)
+            {
+                ModelState.AddModelError("", "Username already existe");
+            }
+            if (ModelState.IsValid&&name!=null)
             {
                 var user = new User { UserName = model.Username, Email = model.Email,PhoneNumber=model.PhoneNumber,Name=model.Name };
                 var result = await UserManager.CreateAsync(user, model.Password);

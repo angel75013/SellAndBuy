@@ -297,6 +297,7 @@
     <Content Include="Views\Add\LoadConcreteAdd.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\double.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\dateTime.cshtml" />
+    <Content Include="Views\Shared\_LoadLastFive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

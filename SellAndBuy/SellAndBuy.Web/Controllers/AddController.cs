@@ -22,6 +22,7 @@ namespace SellAndBuy.Web.Controllers
 {
     public class AddController : Controller
     {
+        const int TakeLastElement = 5;
         private readonly IAddsServices addService;
         private readonly IMapper mapper;
         private readonly ICategoriesServices categoriesService;
@@ -128,13 +129,21 @@ namespace SellAndBuy.Web.Controllers
             var allProvinces = this.provinceServices.GetAll().Select(x => x.ProvinceName).ToList();
             var allCities = this.citiesServices.GetAll().Select(x => x.Name).ToList();
 
-
+            
             var searchModel = new SearchViewModel();
             searchModel.Categories = allCategoris;
             searchModel.Provinces = allProvinces;
             searchModel.Cities = allCities;
 
             return View(searchModel);
+        }
+        [ChildActionOnly]
+        [OutputCache(Duration =60)]
+        public ActionResult LoadLastFive()
+        {
+            var adds = this.addService.GetAllNotDeleted();
+            var lastFive = adds.OrderByDescending(p => p.CreatedOn).Take(TakeLastElement).ProjectTo<MyAddsViewModel>();
+            return PartialView("_LoadLastFive",lastFive);
         }
         [Authorize]
         public ActionResult LoadConcreteAdd(Guid Id)

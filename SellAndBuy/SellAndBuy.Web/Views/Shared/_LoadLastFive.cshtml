@@ -1,0 +1,31 @@
+﻿@using SellAndBuy.Web.Models.Adds.AddModels
+@model IEnumerable<MyAddsViewModel>
+@{
+    ViewBag.Title = "LoadLastFive";
+}
+<h1> Наште последни добавени обяви</h1>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3">
+            <div class="card" style="width: 250px;">
+
+                <div class="card-block">
+                    <div>
+                        <a href="@Url.Action("LoadConcreteAdd", "Add", new { id = item.Id}, null)">
+                            <img src="@Url.Content("~/Content/Upload/"+item.ImgName)" class="img-responsive" alt=@item.Description>
+                        </a>
+                    </div>
+
+                    <h5 class="card-title">Uploaded: @string.Format("{0:dd/MM/yyyy}", item.CreatedOn), Price: @item.Price€</h5>
+
+
+                    <p class="card-text">Description: @item.Description</p>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

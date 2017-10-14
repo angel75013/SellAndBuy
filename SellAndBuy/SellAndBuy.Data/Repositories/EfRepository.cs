@@ -5,17 +5,18 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Bytes2you.Validation;
 namespace SellAndBuy.Data.Repositories
 {
     public class EfRepostory<T> : IEfRepository<T>
         where T : class
     {
-        private readonly SqlDbContext context;
+        private readonly ISqlDbContext context;
 
-        public EfRepostory(SqlDbContext context)
+        public EfRepostory(ISqlDbContext context)
         {
-           
+            Guard.WhenArgument(context, "SqlDbContext").IsNull().Throw();
+
             this.context = context;
         }
 
@@ -47,15 +48,15 @@ namespace SellAndBuy.Data.Repositories
             entry.State = EntityState.Modified;
         }
 
-        public void Update(T entity)
-        {
-            DbEntityEntry entry = this.context.Entry(entity);
-            if (entry.State == EntityState.Detached)
-            {
-                this.context.Set<T>().Attach(entity);
-            }
-
-            entry.State = EntityState.Modified;
-        }
+       // public void Update(T entity)
+       // {
+       //     DbEntityEntry entry = this.context.Entry(entity);
+       //     if (entry.State == EntityState.Detached)
+       //     {
+       //         this.context.Set<T>().Attach(entity);
+       //     }
+       //
+       //     entry.State = EntityState.Modified;
+       // }
     }
 }

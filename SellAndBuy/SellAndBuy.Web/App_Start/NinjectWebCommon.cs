@@ -77,13 +77,13 @@ namespace SellAndBuy.Web.App_Start
 
             kernel.Bind(x =>
             {
-                x.FromAssemblyContaining(typeof(IService))//limitirame magic strings, pomisli za bazov klas na servicite 
+                x.FromAssemblyContaining(typeof(IService))
                  .SelectAllClasses()
                  .BindDefaultInterface();
             });
 
            
-            kernel.Bind(typeof(DbContext), typeof(SqlDbContext)).To<SqlDbContext>().InRequestScope();
+            kernel.Bind(typeof(DbContext), typeof(ISqlDbContext)).To<SqlDbContext>().InRequestScope();
             kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepostory<>));
             kernel.Bind<IEfUnitOfWork>().To<EfUnitOfWork>();
             kernel.Bind<IMapper>().ToMethod(x => Mapper.Instance).InSingletonScope();

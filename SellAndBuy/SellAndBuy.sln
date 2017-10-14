@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SellAndBuy.Services", "SellAndBuy.Services\SellAndBuy.Services.csproj", "{889AB88A-169F-4613-9496-C9EF44876371}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SellAndBuy.Tests", "SellAndBuy.Tests\SellAndBuy.Tests.csproj", "{01F1ABE3-6EFF-4CC7-9FD2-EBF5AB7364D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{889AB88A-169F-4613-9496-C9EF44876371}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{889AB88A-169F-4613-9496-C9EF44876371}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{889AB88A-169F-4613-9496-C9EF44876371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01F1ABE3-6EFF-4CC7-9FD2-EBF5AB7364D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F1ABE3-6EFF-4CC7-9FD2-EBF5AB7364D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F1ABE3-6EFF-4CC7-9FD2-EBF5AB7364D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F1ABE3-6EFF-4CC7-9FD2-EBF5AB7364D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

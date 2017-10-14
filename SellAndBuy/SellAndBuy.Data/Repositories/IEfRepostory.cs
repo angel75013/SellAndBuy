@@ -11,6 +11,6 @@ namespace SellAndBuy.Data.Repositories
 
         void Delete(T entity);
             
-        void Update(T entity);
+        //void Update(T entity); if edit implement
     }
 }

@@ -11,6 +11,7 @@
 {
     @Html.AntiForgeryToken()
 
+    @Html.LabelFor(m => m.Description, new { @class = "col-2 col-form-label" })
     @Html.EditorFor(m => m.Description)
 
 

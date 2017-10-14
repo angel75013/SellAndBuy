@@ -4,12 +4,10 @@
     ViewBag.Title = "MyAdds";
 }
 <h1>@TempData["add"]</h1>
-
 <div class="row">
     
     @foreach (var item in Model)
     {
-       
         <div class="col-lg-3">
             @Html.Partial("_LoadDetails", item)
             @using (Html.BeginForm("DeleteAdd", "Add", new { id = item.Id }, FormMethod.Post, new { @class = "form-inline" }))

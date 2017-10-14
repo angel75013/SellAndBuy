@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bytes2you.Validation;
 
 namespace SellAndBuy.Services
 {
@@ -17,6 +18,9 @@ namespace SellAndBuy.Services
 
         public AddsServices(IEfRepository<Add> adds, IEfUnitOfWork context)
         {
+            Guard.WhenArgument(adds, "adds").IsNull().Throw();
+            Guard.WhenArgument(context, "context").IsNull().Throw();
+
             this.adds = adds;
             this.context = context;
         }

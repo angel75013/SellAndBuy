@@ -17,6 +17,7 @@ using System.Web.Security;
 
 using SellAndBuy.Web.Models.Adds.CityModels;
 using SellAndBuy.Web.Models.Adds.AddModels;
+using Bytes2you.Validation;
 
 namespace SellAndBuy.Web.Controllers
 {
@@ -30,12 +31,20 @@ namespace SellAndBuy.Web.Controllers
         private readonly ICitiesServices citiesServices;
 
 
-        public AddController(IAddsServices service, IMapper mapper,
+        public AddController(
+            IAddsServices service,
+            IMapper mapper,
             ICategoriesServices categoriesService,
             IProvincesServices provinceServices,
             ICitiesServices citiesServices)
 
         {
+            Guard.WhenArgument(service,"service").IsNull().Throw();
+            Guard.WhenArgument(mapper, "mapper").IsNull().Throw();
+            Guard.WhenArgument(categoriesService, "categoriesService").IsNull().Throw();
+            Guard.WhenArgument(provinceServices, "provinceServices").IsNull().Throw();
+            Guard.WhenArgument(citiesServices, "citiesServices").IsNull().Throw();
+
             this.addService = service;
             this.mapper = mapper;
             this.categoriesService = categoriesService;

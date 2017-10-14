@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿    using Microsoft.AspNet.Identity.EntityFramework;
 using SellAndBuy.Data.Models;
 using System.Data.Entity;
 
 namespace SellAndBuy.Data
 {
-    public class SqlDbContext : IdentityDbContext<User>
+    public class SqlDbContext : IdentityDbContext<User>,ISqlDbContext
     {
         public SqlDbContext()
             : base("LocalConnection", throwIfV1Schema: false)
@@ -15,6 +15,10 @@ namespace SellAndBuy.Data
         public virtual IDbSet<Category> Categories { get; set; }
      
         public virtual IDbSet<Province> Provinces { get; set; }
+        IDbSet<T> ISqlDbContext.Set<T>()
+        {
+            return this.Set<T>();
+        }
 
         public static SqlDbContext Create()
         {

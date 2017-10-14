@@ -1,12 +1,9 @@
-﻿using SellAndBuy.Data.Models;
+﻿using Bytes2you.Validation;
+using SellAndBuy.Data.Models;
 using SellAndBuy.Data.Repositories;
 using SellAndBuy.Data.UnitOfWork;
 using SellAndBuy.Services.Contracts;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SellAndBuy.Services
 {
@@ -17,6 +14,9 @@ namespace SellAndBuy.Services
 
         public CitiesServices(IEfRepository<City> cities, IEfUnitOfWork context)
         {
+            Guard.WhenArgument(context, "context").IsNull().Throw();
+            Guard.WhenArgument(cities, "cities").IsNull().Throw();
+
             this.cities = cities;
             this.context = context;
         }

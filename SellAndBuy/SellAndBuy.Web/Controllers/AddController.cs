@@ -86,7 +86,12 @@ namespace SellAndBuy.Web.Controllers
                                     "_" +
                                     Guid.NewGuid().ToString()
                                         + Path.GetExtension(fileName);
-                string path = Path.Combine(Server.MapPath("~/Content/Upload/"), randomFileName);
+                var path = Server.MapPath("~/Content/Upload/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                path = Path.Combine(Server.MapPath("~/Content/Upload/"), randomFileName);
                 image.SaveAs(path);
 
                 this.addService.CreateAdd(user, cityId, categoryId, model.Price, model.Description, randomFileName);
@@ -94,6 +99,7 @@ namespace SellAndBuy.Web.Controllers
                 return RedirectToAction("MyAdds", "Add");
 
             }
+
             else
             {               
                 return View();

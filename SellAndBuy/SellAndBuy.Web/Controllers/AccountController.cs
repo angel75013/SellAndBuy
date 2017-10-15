@@ -155,7 +155,7 @@ namespace SellAndBuy.Web.Controllers
             {
                 ModelState.AddModelError("", "Username already existe");
             }
-            if (ModelState.IsValid&&name!=null)
+            if (ModelState.IsValid)
             {
                 var user = new User { UserName = model.Username, Email = model.Email,PhoneNumber=model.PhoneNumber,Name=model.Name };
                 var result = await UserManager.CreateAsync(user, model.Password);

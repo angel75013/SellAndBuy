@@ -1,0 +1,31 @@
+﻿@using SellAndBuy.Web.Areas.Admin.Models;
+@model IEnumerable<AddAdmin>
+@{
+    ViewBag.Title = "Admin Area";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var grid = new WebGrid(source: Model, rowsPerPage: 4, canPage: true, canSort: true);
+    @grid.GetHtml(
+     tableStyle: "webgrid-table",
+        headerStyle: "webgrid-header",
+        footerStyle: "webgrid-footer",
+        alternatingRowStyle: "webgrid-alternating-row",
+        selectedRowStyle: "webgrid-selected-row",
+        rowStyle: "webgrid-row-style",
+    columns: grid.Columns(
+    grid.Column(columnName: "Description", header: "Name of the Product"),
+    grid.Column(columnName: "CreatedOn", header: "Date Create"),
+    grid.Column(columnName: "IsDeleted", header: "DELETEd"),
+    grid.Column(columnName: "UserName", header: "User"),
+    grid.Column(columnName: "UserId", header: "UserId"),
+    grid.Column(columnName: "CityName", header: "City"),
+    grid.Column(columnName: "CategorieName", header: "Category"),
+    grid.Column(format: (item) => Html.ActionLink("Delete", "Delete", "Admin", new { Id = item.Id },null)),
+
+    grid.Column(columnName: "Price", header: "Price in $", format:@<text>@item.Price €</text>)));
+}
+
+
+

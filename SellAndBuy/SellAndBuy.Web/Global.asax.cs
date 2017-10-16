@@ -15,6 +15,7 @@ namespace SellAndBuy.Web
         {
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
+           
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<SqlDbContext, Configuration>());
             AreaRegistration.RegisterAllAreas();

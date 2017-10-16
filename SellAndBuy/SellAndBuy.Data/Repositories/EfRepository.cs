@@ -24,6 +24,7 @@ namespace SellAndBuy.Data.Repositories
         {
             get
             {
+                
                 return this.context.Set<T>();
             }
         }

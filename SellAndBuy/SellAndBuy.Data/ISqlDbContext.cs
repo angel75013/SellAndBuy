@@ -10,6 +10,7 @@ namespace SellAndBuy.Data
         IDbSet<Add> Adds { get; set; }
         IDbSet<Category> Categories { get; set; }
         IDbSet<Province> Provinces { get; set; }
+        IDbSet<User> Users { get; set; }
 
         IDbSet<T> Set<T>() where T : class;
         DbEntityEntry<T> Entry<T>(T entity) where T : class;

@@ -3,58 +3,60 @@
 @{
     ViewBag.Title = "Create your Add";
 }
+<div class="container">
+    <div class="card card-add-article">
+        <div class="container body-content">
+            <h4 class="text-center">CreateAdd</h4>
+        </div>
+        <hr />
 
-<h2>CreateAdd</h2>
+        <div class="card-content">
+            @using (Html.BeginForm("CreateAdd", "Add", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <div class="input-field">
+                            @Html.LabelFor(m => m.CityName, new { @class = "col-2 col-form-label" })
+                            @Html.DropDownListFor(m => m.CityName, new SelectList(Model.Cities, "Value"), "  -----Всички Градове-----  ")
+                            @Html.ValidationMessageFor(m => m.CityName, "", new { @class = "text-danger" })
+                        </div>
 
-@using (Html.BeginForm("CreateAdd", "Add", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.LabelFor(m => m.CityName, new { @class = "col-2 col-form-label" })
-            @Html.DropDownListFor(m => m.CityName, new SelectList(Model.Cities, "Value"), "  -----Всички Градове-----  ")
-            @Html.ValidationMessageFor(m => m.CityName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br />
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.LabelFor(m => m.Category, new { @class = "col-2 col-form-label" })
-            @Html.DropDownListFor(m => m.Category, new SelectList(Model.Categories, "value"), "-----Всички Категории-----  ")
-            @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br />
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.LabelFor(m => m.Description, new { @class = "col-2 col-form-label" })
-            @Html.EditorFor(m => m.Description)
-            @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br />
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.LabelFor(m => m.Price, new { @class = "col-2 col-form-label" })
-            @Html.EditorFor(m => m.Price)
-            @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br />
-    <div class="form-group">
-        <div>
-            @Html.LabelFor(m => m.File, new { @class = "col-2 col-form-label" })
-            @Html.TextBoxFor(m => m.File, new { type = "file" })
-            @Html.ValidationMessageFor(m => m.File, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <input type="submit" value="Create" name="submit" />
+                        <div class="input-field">
+                            @Html.LabelFor(m => m.Category, new { @class = "col-2 col-form-label" })
+                            @Html.DropDownListFor(m => m.Category, new SelectList(Model.Categories, "value"), "-----Всички Категории-----  ")
+                            @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
+                        </div>
 
-}
+                        <div class="input-field">
+                            @Html.LabelFor(m => m.Description, new { @class = "col-2 col-form-label" })
+                            @Html.EditorFor(m => m.Description)
+                            @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                        </div>
 
- 
+                        <div class="input-field">
+                            @Html.LabelFor(m => m.Price, new { @class = "col-2 col-form-label" })
+                            @Html.EditorFor(m => m.Price)
+                            @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="row justify-content-center">
+
+                            @Html.TextBoxFor(m => m.File, new { type = "file" })
+                            @Html.ValidationMessageFor(m => m.File, "", new { @class = "text-danger" })
+
+                        </div>
+                        <input type="submit" value="Create" name="submit" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
 @section Scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
- 
+
 }

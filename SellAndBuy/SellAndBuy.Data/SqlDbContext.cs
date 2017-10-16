@@ -13,7 +13,7 @@ namespace SellAndBuy.Data
         public virtual IDbSet<City> Cities { get; set; }
         public virtual IDbSet<Add> Adds { get; set; }
         public virtual IDbSet<Category> Categories { get; set; }
-     
+        
         public virtual IDbSet<Province> Provinces { get; set; }
         IDbSet<T> ISqlDbContext.Set<T>()
         {

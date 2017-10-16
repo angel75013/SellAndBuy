@@ -37,7 +37,7 @@ namespace SellAndBuy.Data.Migrations
 
         private void SeedAdmin(SqlDbContext context)
         {
-            const string AdministratorUserName = "info@telerikacademy.com";
+            const string AdministratorUserName = "telerikacademy";
             const string AdministratorPassword = "123456";
 
             if (!context.Roles.Any())
@@ -49,7 +49,7 @@ namespace SellAndBuy.Data.Migrations
 
                 var userStore = new UserStore<User>(context);
                 var userManager = new UserManager<User>(userStore);
-                var user = new User { UserName = AdministratorUserName, Email = AdministratorUserName, EmailConfirmed = true };
+                var user = new User { UserName = AdministratorUserName, Email = AdministratorUserName, EmailConfirmed = true,PhoneNumber="123456789" };
                 userManager.Create(user, AdministratorPassword);
 
                 userManager.AddToRole(user.Id, "Admin");

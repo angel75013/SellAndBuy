@@ -1,15 +1,12 @@
-﻿using System;
-using System.Globalization;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using SellAndBuy.Data.Models;
+using SellAndBuy.Web.Models;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using SellAndBuy.Web.Models;
-using SellAndBuy.Data.Models;
 
 namespace SellAndBuy.Web.Controllers
 {

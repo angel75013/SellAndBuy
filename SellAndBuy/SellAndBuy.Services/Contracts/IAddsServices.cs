@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SellAndBuy.Services.Contracts
 {
-    public interface IAddsServices: IService,IBaseService<Add>
+    public interface IAddsServices: IBaseService<Add>
     {        
         Add FindById(Guid addId);
         IQueryable<Add> GetAllNotDeleted();

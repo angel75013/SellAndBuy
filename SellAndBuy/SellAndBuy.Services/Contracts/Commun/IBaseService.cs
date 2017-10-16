@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SellAndBuy.Services.Contracts
 {
-    public interface IBaseService<T>
+    public interface IBaseService<T>: IService
     where T : class
     {
         IQueryable<T> GetAll();

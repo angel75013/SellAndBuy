@@ -15,10 +15,10 @@
                 <li>@Html.ActionLink("My Adds", "MyAdds", "Add")</li> }
 
             <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { area = "" }, htmlAttributes: new { title = "Manage" })
             </li>
             <li>
-                @Html.ActionLink("SignOut", "LogOff", "Account", routeValues: null, htmlAttributes: new { title = "SignOut" })
+                @Html.ActionLink("SignOut", "LogOff", "Account", new { area = "" }, htmlAttributes: new { title = "SignOut" })
             </li>       
         </ul>
     }

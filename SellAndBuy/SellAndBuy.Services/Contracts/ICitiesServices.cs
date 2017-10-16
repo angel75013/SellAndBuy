@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SellAndBuy.Services.Contracts
 {
-    public interface ICitiesServices: IService,IBaseService<City>, IGeoService
+    public interface ICitiesServices: IBaseService<City>, IGeoService
     { 
         IQueryable<City> GetCitiesByProvinceId(int provinceId);
     }

@@ -25,12 +25,10 @@ namespace SellAndBuy.Web.Models.Adds
         [Required]
         public string Category { get; set; }
 
-
         [Required(ErrorMessage = "Please select file.")]
         [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$", ErrorMessage = "Only Image files allowed.")]
         [Display(Name = "Image")]
         public HttpPostedFileBase File { get; set; }
-
 
         public ICollection<string> Cities { get; set; }
 

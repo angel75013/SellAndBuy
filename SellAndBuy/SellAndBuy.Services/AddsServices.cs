@@ -24,15 +24,16 @@ namespace SellAndBuy.Services
             this.adds = adds;
             this.context = context;
         }
+
         public IQueryable<Add> GetAll()
         {
             return this.adds.All;
-        }
-        
+        }        
         public Add FindById(Guid addId)
         {
             return this.adds.All.FirstOrDefault(x=>x.Id==addId);
         }
+
         public  void  FindByIdAndDelete(Guid addId)
         {
             var result= this.adds.All.FirstOrDefault(x => x.Id == addId);
@@ -55,7 +56,6 @@ namespace SellAndBuy.Services
 
             this.adds.Add(add);
             this.context.Commit();
-
         }       
 
         public IQueryable<Add> GetAllNotDeleted()

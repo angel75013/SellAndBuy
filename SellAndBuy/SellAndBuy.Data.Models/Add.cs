@@ -23,7 +23,6 @@ namespace SellAndBuy.Data.Models
         public string Description { get; set; }
         public string ImgName { get; set; }
 
-
         [Index]
         public bool IsDeleted { get; set; }
 

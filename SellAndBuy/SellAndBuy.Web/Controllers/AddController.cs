@@ -1,23 +1,15 @@
 ﻿using AutoMapper;
-using SellAndBuy.Services;
-using SellAndBuy.Services.Contracts;
-using SellAndBuy.Web.Models;
-using SellAndBuy.Web.Models.Adds;
-using SellAndBuy.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using AutoMapper.QueryableExtensions;
-using System.IO;
-using System.Reflection;
-using System.Web.Security;
-
-using SellAndBuy.Web.Models.Adds.CityModels;
-using SellAndBuy.Web.Models.Adds.AddModels;
 using Bytes2you.Validation;
+using Microsoft.AspNet.Identity;
+using SellAndBuy.Services.Contracts;
+using SellAndBuy.Web.Models.Adds;
+using SellAndBuy.Web.Models.Adds.AddModels;
+using SellAndBuy.Web.Models.Adds.CityModels;
+using System;
+using System.IO;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace SellAndBuy.Web.Controllers
 {
@@ -62,7 +54,6 @@ namespace SellAndBuy.Web.Controllers
             var allCategoris = this.categoriesService.GetAll().Select(x => x.CategorieName).ToList();
             var allCities = this.citiesServices.GetAll().Select(x => x.Name).ToList();
 
-
             var searchModel = new CreateAddViewModel();
             searchModel.Categories = allCategoris;
             searchModel.Cities = allCities;
@@ -97,9 +88,7 @@ namespace SellAndBuy.Web.Controllers
                 this.addService.CreateAdd(user, cityId, categoryId, model.Price, model.Description, randomFileName);
 
                 return RedirectToAction("MyAdds", "Add");
-
             }
-
             else
             {               
                 return View();
@@ -202,8 +191,8 @@ namespace SellAndBuy.Web.Controllers
             
             this.addService.FindByIdAndDelete(Id);
             var user = User.Identity.GetUserId();
-            this.TempData["add"] = String.Format(@"Your add {0} 
-                                                           was successully deleted",foundAdd.Description);
+            this.TempData["add"] = String.Format(@"Вашата обява - {0} 
+                                                           беше успешно изтрита",foundAdd.Description);
             return RedirectToAction("MyAdds", "Add", new { userId = user });
         }
     }

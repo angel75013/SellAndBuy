@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SellAndBuy.Services.Contracts
 {
-    public interface ICategoriesServices : IService,IBaseService<Category>, IGeoService
+    public interface ICategoriesServices : IBaseService<Category>, IGeoService
     { 
     }
 }
